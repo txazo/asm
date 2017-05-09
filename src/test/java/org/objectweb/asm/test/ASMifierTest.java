@@ -5,18 +5,18 @@ import org.objectweb.asm.util.ASMifier;
 
 public class ASMifierTest {
 
-    private static final String debug = "-debug";
+    private static final String DEBUG = "-debug";
+    private static final String CLASS_NAME = "org.objectweb.asm.test.Sample";
 
     @Test
-    public void testSourceCode() throws Exception {
-        String className = "org.objectweb.asm.test.Sample";
-        ASMifier.main(new String[]{debug, className});
+    public void test1() throws Exception {
+        ASMifier.main(new String[]{DEBUG, CLASS_NAME});
     }
 
     @Test
-    public void testByteCode() throws Exception {
-        String classFile = ASMifierTest.class.getResource("/").getPath() + "org/objectweb/asm/test/Sample.class";
-        ASMifier.main(new String[]{debug, classFile});
+    public void test2() throws Exception {
+        String classFile = ASMifierTest.class.getResource("/").getPath() + CLASS_NAME.replaceAll("\\.", "/") + ".class";
+        ASMifier.main(new String[]{DEBUG, classFile});
     }
 
 }

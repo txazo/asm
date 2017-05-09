@@ -3,20 +3,23 @@ package org.objectweb.asm.test;
 import org.junit.Test;
 import org.objectweb.asm.util.Textifier;
 
+/**
+ * asm反编译
+ */
 public class TextifierTest {
 
-    private static final String debug = "-debug";
+    private static final String DEBUG = "-debug";
+    private static final String CLASS_NAME = "org.objectweb.asm.test.Sample";
 
     @Test
-    public void testSourceCode() throws Exception {
-        String className = "org.objectweb.asm.test.Sample";
-        Textifier.main(new String[]{debug, className});
+    public void test1() throws Exception {
+        Textifier.main(new String[]{DEBUG, CLASS_NAME});
     }
 
     @Test
-    public void testByteCode() throws Exception {
-        String classFile = ASMifierTest.class.getResource("/").getPath() + "org/objectweb/asm/test/Sample.class";
-        Textifier.main(new String[]{debug, classFile});
+    public void test2() throws Exception {
+        String classFile = ASMifierTest.class.getResource("/").getPath() + CLASS_NAME.replaceAll("\\.", "/") + ".class";
+        Textifier.main(new String[]{DEBUG, classFile});
     }
 
 }
